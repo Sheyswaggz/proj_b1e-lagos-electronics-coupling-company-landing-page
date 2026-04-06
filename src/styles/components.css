@@ -1,0 +1,300 @@
+/* Hero Section - Split-Screen Layout */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.hero-company-name {
+  font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.hero-tagline {
+  font-size: clamp(1.125rem, 2vw + 0.5rem, 1.5rem);
+  font-weight: 600;
+  color: #2d5016;
+  margin: 0;
+}
+
+.hero-value-proposition {
+  font-size: clamp(1rem, 1.5vw + 0.25rem, 1.125rem);
+  line-height: 1.6;
+  color: #4a4a4a;
+  max-width: 65ch;
+  margin: 0;
+}
+
+.hero-cta-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Morphing CTA Button */
+.btn-morph {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2d5016 0%, #3a6b1f 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 200px;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.btn-morph::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #3a6b1f 0%, #4a7f2a 100%);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.btn-morph:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(45, 80, 22, 0.2);
+}
+
+.btn-morph:hover::before {
+  opacity: 1;
+}
+
+.btn-morph:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(45, 80, 22, 0.15);
+}
+
+.btn-morph:focus-visible {
+  outline: 3px solid #2d5016;
+  outline-offset: 3px;
+}
+
+/* Loading state */
+.btn-morph[data-loading="true"] {
+  pointer-events: none;
+  color: transparent;
+}
+
+.btn-morph[data-loading="true"]::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success state */
+.btn-morph[data-state="success"] {
+  background: linear-gradient(135deg, #2d5016 0%, #3a6b1f 100%);
+}
+
+.btn-morph[data-state="success"]::after {
+  content: '✓';
+  position: absolute;
+  color: #ffffff;
+  font-size: 1.5rem;
+  animation: checkmark-in 0.3s ease-out;
+}
+
+@keyframes checkmark-in {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hero Right Section */
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(45, 80, 22, 0.05) 0%, rgba(58, 107, 31, 0.05) 100%);
+  border-radius: 16px;
+  min-height: 400px;
+}
+
+.hero-visual-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #4a4a4a;
+  text-align: center;
+}
+
+/* Responsive Design - Mobile First */
+
+/* Small devices (640px and up) */
+@media (min-width: 640px) {
+  .hero-content {
+    padding: 3rem;
+  }
+
+  .hero-cta-container {
+    flex-direction: row;
+  }
+}
+
+/* Medium devices (768px and up) */
+@media (min-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 4rem;
+  }
+
+  .hero-left {
+    gap: 2rem;
+  }
+
+  .hero-right {
+    min-height: 500px;
+  }
+}
+
+/* Large devices (1024px and up) */
+@media (min-width: 1024px) {
+  .hero-content {
+    gap: 4rem;
+    padding: 5rem;
+  }
+
+  .hero-company-name {
+    letter-spacing: -0.02em;
+  }
+
+  .btn-morph {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+  }
+
+  .hero-right {
+    min-height: 600px;
+  }
+}
+
+/* Extra large devices (1280px and up) */
+@media (min-width: 1280px) {
+  .hero-content {
+    gap: 5rem;
+    padding: 6rem;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-morph,
+  .btn-morph::before {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .btn-morph:hover {
+    transform: none;
+  }
+
+  .btn-morph:active {
+    transform: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .hero-company-name {
+    color: #e5e7eb;
+  }
+
+  .hero-tagline {
+    color: #7ec850;
+  }
+
+  .hero-value-proposition {
+    color: #d1d5db;
+  }
+
+  .hero-right {
+    background: linear-gradient(135deg, rgba(45, 80, 22, 0.15) 0%, rgba(58, 107, 31, 0.15) 100%);
+  }
+
+  .hero-visual-placeholder {
+    color: #d1d5db;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .hero-company-name {
+    font-weight: 800;
+  }
+
+  .btn-morph {
+    border: 2px solid #2d5016;
+  }
+
+  .btn-morph:focus-visible {
+    outline-width: 4px;
+  }
+}
+
+/* Professional Nigerian Business Colors */
+:root {
+  --color-primary: #2d5016;
+  --color-primary-light: #3a6b1f;
+  --color-primary-lighter: #4a7f2a;
+  --color-accent: #7ec850;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #4a4a4a;
+  --color-surface: #ffffff;
+  --color-surface-variant: rgba(45, 80, 22, 0.05);
+}
