@@ -12,7 +12,7 @@ const ButtonState = Object.freeze({
   HOVER: 'hover',
   LOADING: 'loading',
   SUCCESS: 'success',
-  ERROR: 'error'
+  ERROR: 'error',
 });
 
 /**
@@ -23,7 +23,7 @@ const config = {
   successDuration: 2000,
   errorDuration: 3000,
   rippleEffect: true,
-  hapticFeedback: false
+  hapticFeedback: false,
 };
 
 /**
@@ -54,8 +54,14 @@ class ButtonInteractionManager {
    */
   attachEventListeners() {
     // Hover effects
-    this.button.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
-    this.button.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+    this.button.addEventListener(
+      'mouseenter',
+      this.handleMouseEnter.bind(this)
+    );
+    this.button.addEventListener(
+      'mouseleave',
+      this.handleMouseLeave.bind(this)
+    );
 
     // Click handler
     this.button.addEventListener('click', this.handleClick.bind(this));
@@ -64,8 +70,14 @@ class ButtonInteractionManager {
     this.button.addEventListener('keydown', this.handleKeydown.bind(this));
 
     // Touch support for mobile
-    this.button.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
-    this.button.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: true });
+    this.button.addEventListener(
+      'touchstart',
+      this.handleTouchStart.bind(this),
+      { passive: true }
+    );
+    this.button.addEventListener('touchend', this.handleTouchEnd.bind(this), {
+      passive: true,
+    });
   }
 
   /**
@@ -200,7 +212,6 @@ class ButtonInteractionManager {
 
       // Reset to idle state
       this.setState(ButtonState.IDLE);
-
     } catch (error) {
       console.error('Button action failed:', error);
       this.setState(ButtonState.ERROR);
@@ -224,9 +235,11 @@ class ButtonInteractionManager {
     this.updateAriaAttributes(newState);
 
     // Emit state change event
-    this.button.dispatchEvent(new CustomEvent('buttonStateChange', {
-      detail: { previousState, newState }
-    }));
+    this.button.dispatchEvent(
+      new CustomEvent('buttonStateChange', {
+        detail: { previousState, newState },
+      })
+    );
   }
 
   /**
@@ -280,7 +293,10 @@ class ButtonInteractionManager {
         break;
 
       case ButtonState.ERROR:
-        this.button.setAttribute('aria-label', 'Action failed, please try again');
+        this.button.setAttribute(
+          'aria-label',
+          'Action failed, please try again'
+        );
         this.button.removeAttribute('aria-busy');
         this.button.removeAttribute('aria-disabled');
         break;
@@ -288,7 +304,10 @@ class ButtonInteractionManager {
       default:
         this.button.removeAttribute('aria-busy');
         this.button.removeAttribute('aria-disabled');
-        this.button.setAttribute('aria-label', this.button.getAttribute('aria-label') || this.originalText);
+        this.button.setAttribute(
+          'aria-label',
+          this.button.getAttribute('aria-label') || this.originalText
+        );
     }
   }
 
@@ -399,7 +418,7 @@ function initializeModule() {
     window.buttonInteractions = {
       managers,
       config,
-      ButtonState
+      ButtonState,
     };
   }
 
@@ -410,4 +429,9 @@ function initializeModule() {
 init();
 
 // Export for module usage
-export { ButtonInteractionManager, ButtonState, config, initializeMorphingButtons };
+export {
+  ButtonInteractionManager,
+  ButtonState,
+  config,
+  initializeMorphingButtons,
+};

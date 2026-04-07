@@ -15,7 +15,7 @@ const config = {
   animationDuration: 600,
   imageLoadRetryAttempts: 3,
   imageLoadRetryDelay: 1000,
-  reducedMotion: false
+  reducedMotion: false,
 };
 
 /**
@@ -26,7 +26,7 @@ const state = {
   imageObserver: null,
   revealedElements: new Set(),
   loadedImages: new Set(),
-  initialized: false
+  initialized: false,
 };
 
 /**
@@ -42,10 +42,10 @@ function initializeScrollReveal() {
   // Create Intersection Observer for reveal animations
   const observerOptions = {
     threshold: config.revealThreshold,
-    rootMargin: config.revealRootMargin
+    rootMargin: config.revealRootMargin,
   };
 
-  state.revealObserver = new IntersectionObserver((entries) => {
+  state.revealObserver = new IntersectionObserver(entries => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting && !state.revealedElements.has(entry.target)) {
         // Calculate stagger delay based on element index
@@ -66,7 +66,9 @@ function initializeScrollReveal() {
     state.revealObserver.observe(element);
   });
 
-  console.log(`Initialized scroll reveal for ${revealElements.length} element(s)`);
+  console.log(
+    `Initialized scroll reveal for ${revealElements.length} element(s)`
+  );
 }
 
 /**
@@ -117,7 +119,9 @@ function revealElement(element) {
   if (config.reducedMotion) {
     element.style.opacity = '1';
     element.style.transform = 'none';
-    element.dispatchEvent(new CustomEvent('elementRevealed', { detail: { element } }));
+    element.dispatchEvent(
+      new CustomEvent('elementRevealed', { detail: { element } })
+    );
     return;
   }
 
@@ -132,7 +136,9 @@ function revealElement(element) {
   setTimeout(() => {
     element.style.transition = '';
     element.removeAttribute('data-reveal');
-    element.dispatchEvent(new CustomEvent('elementRevealed', { detail: { element } }));
+    element.dispatchEvent(
+      new CustomEvent('elementRevealed', { detail: { element } })
+    );
   }, config.animationDuration);
 }
 
@@ -159,10 +165,10 @@ function initializeLazyLoading() {
   // Fallback: Use Intersection Observer for lazy loading
   const observerOptions = {
     threshold: 0.01,
-    rootMargin: '50px 0px'
+    rootMargin: '50px 0px',
   };
 
-  state.imageObserver = new IntersectionObserver((entries) => {
+  state.imageObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !state.loadedImages.has(entry.target)) {
         loadImage(entry.target);
@@ -192,13 +198,21 @@ function initializeLazyLoading() {
  * Setup image load event handlers
  */
 function setupImageLoadHandlers(img) {
-  img.addEventListener('load', () => {
-    handleImageLoad(img);
-  }, { once: true });
+  img.addEventListener(
+    'load',
+    () => {
+      handleImageLoad(img);
+    },
+    { once: true }
+  );
 
-  img.addEventListener('error', () => {
-    handleImageError(img);
-  }, { once: true });
+  img.addEventListener(
+    'error',
+    () => {
+      handleImageError(img);
+    },
+    { once: true }
+  );
 }
 
 /**
@@ -221,7 +235,9 @@ async function loadImage(img, attempt = 1) {
 
     // Retry loading if attempts remaining
     if (attempt < config.imageLoadRetryAttempts) {
-      console.log(`Retrying image load (attempt ${attempt + 1}/${config.imageLoadRetryAttempts})`);
+      console.log(
+        `Retrying image load (attempt ${attempt + 1}/${config.imageLoadRetryAttempts})`
+      );
       await sleep(config.imageLoadRetryDelay);
       loadImage(img, attempt + 1);
     } else {
@@ -260,7 +276,11 @@ function handleImageError(img) {
   } else {
     // Create error placeholder
     img.alt = img.alt || 'Image failed to load';
-    console.error('Failed to load image:', img.alt, img.getAttribute('data-src') || img.src);
+    console.error(
+      'Failed to load image:',
+      img.alt,
+      img.getAttribute('data-src') || img.src
+    );
   }
 
   // Dispatch custom event
@@ -282,7 +302,7 @@ function checkReducedMotion() {
   }
 
   // Listen for changes
-  mediaQuery.addEventListener('change', (e) => {
+  mediaQuery.addEventListener('change', e => {
     config.reducedMotion = e.matches;
     if (config.reducedMotion) {
       config.animationDuration = 1;
@@ -361,7 +381,7 @@ function initializeModule() {
       config,
       state,
       cleanup,
-      revealElement
+      revealElement,
     };
   }
 
@@ -393,5 +413,5 @@ export {
   loadImage,
   cleanup,
   config,
-  state
+  state,
 };

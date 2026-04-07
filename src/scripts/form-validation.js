@@ -23,15 +23,18 @@ const state = {
 const validationRules = {
   name: {
     pattern: /^[a-zA-Z\s'-]{2,50}$/,
-    message: 'Name must be 2-50 characters and contain only letters, spaces, hyphens, and apostrophes',
+    message:
+      'Name must be 2-50 characters and contain only letters, spaces, hyphens, and apostrophes',
   },
   email: {
-    pattern: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+    pattern:
+      /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
     message: 'Please enter a valid email address',
   },
   phone: {
     pattern: /^(\+234|0)[789][01]\d{8}$/,
-    message: 'Please enter a valid Nigerian phone number (e.g., +2348012345678 or 08012345678)',
+    message:
+      'Please enter a valid Nigerian phone number (e.g., +2348012345678 or 08012345678)',
   },
   message: {
     minLength: 10,
@@ -238,7 +241,7 @@ function validateAllFields(form) {
   const fields = form.querySelectorAll('input, textarea');
   let allValid = true;
 
-  fields.forEach((field) => {
+  fields.forEach(field => {
     if (!field.name) return;
 
     const validator = getValidator(field.name);
@@ -321,7 +324,7 @@ async function submitFormData(formData) {
       method: 'POST',
       body: formData,
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       signal: controller.signal,
     });
@@ -330,7 +333,9 @@ async function submitFormData(formData) {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      throw new Error(
+        errorData.error || `HTTP error! status: ${response.status}`
+      );
     }
 
     return await response.json();
@@ -338,7 +343,9 @@ async function submitFormData(formData) {
     clearTimeout(timeoutId);
 
     if (error.name === 'AbortError') {
-      throw new Error('Request timed out. Please check your connection and try again.');
+      throw new Error(
+        'Request timed out. Please check your connection and try again.'
+      );
     }
 
     throw error;
@@ -364,7 +371,11 @@ async function handleFormSubmit(event) {
   const isValid = validateAllFields(form);
 
   if (!isValid) {
-    showFeedback(feedbackElement, 'error', 'Please correct the errors above before submitting.');
+    showFeedback(
+      feedbackElement,
+      'error',
+      'Please correct the errors above before submitting.'
+    );
 
     // Focus first invalid field
     const firstInvalidField = form.querySelector('[aria-invalid="true"]');
@@ -411,7 +422,7 @@ async function handleFormSubmit(event) {
 
     // Clear validation state
     const fields = form.querySelectorAll('input, textarea');
-    fields.forEach((field) => {
+    fields.forEach(field => {
       field.setAttribute('aria-invalid', 'false');
       field.classList.remove('validated');
       const errorElement = document.getElementById(`${field.id}-error`);
@@ -422,7 +433,6 @@ async function handleFormSubmit(event) {
     });
 
     state.formData = {};
-
   } catch (error) {
     console.error('Form submission error:', {
       message: error.message,
@@ -455,7 +465,7 @@ function initializeFormValidation() {
 
   // Add input event listeners for real-time validation
   const fields = form.querySelectorAll('input, textarea');
-  fields.forEach((field) => {
+  fields.forEach(field => {
     if (!field.name) return;
 
     field.addEventListener('input', () => {
