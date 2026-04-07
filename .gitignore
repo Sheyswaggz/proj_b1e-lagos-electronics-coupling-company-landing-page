@@ -50,5 +50,10 @@ coverage/
 .vercel/
 .netlify/
 
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
 # Claude CLI task files
 arvad_task_files/
