@@ -1,0 +1,34 @@
+{
+  "name": "lagos-electronics-coupling-company-landing-page",
+  "version": "1.0.0",
+  "description": "A professional landing page for a local electronics coupling company based in Lagos, Nigeria",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "live-server src --port=3000 --open=/index.html",
+    "start": "npm run dev",
+    "build": "npm run build:css && npm run build:html && npm run build:js",
+    "build:css": "postcss src/styles/*.css --dir dist/styles",
+    "build:html": "cp src/index.html dist/",
+    "build:js": "cp -r src/scripts dist/ 2>/dev/null || true",
+    "format": "prettier --write \"src/**/*.{html,css,js}\"",
+    "format:check": "prettier --check \"src/**/*.{html,css,js}\""
+  },
+  "keywords": [
+    "landing-page",
+    "electronics",
+    "lagos",
+    "nigeria",
+    "b2b"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.2",
+    "live-server": "^1.2.2",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "prettier": "^3.1.1"
+  }
+}
