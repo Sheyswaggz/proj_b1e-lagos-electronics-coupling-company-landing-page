@@ -201,6 +201,163 @@
         </div>
       </div>
     </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="contact-container">
+        <header class="contact-header" data-reveal="fade-up">
+          <h2 id="contact-heading" class="contact-title">Get In Touch</h2>
+          <p class="contact-description">
+            Ready to transform your electronics operations? Contact our Lagos team today for expert consultation and customized solutions.
+          </p>
+        </header>
+
+        <div class="contact-grid">
+          <div class="contact-info-wrapper">
+            <div class="contact-info" data-reveal="fade-up">
+              <div class="contact-info-item">
+                <h3 class="contact-info-label">Address</h3>
+                <address class="contact-info-value">
+                  Lagos Electronics Coupling Solutions<br>
+                  Plot 47, Adeola Odeku Street<br>
+                  Victoria Island, Lagos<br>
+                  Nigeria
+                </address>
+              </div>
+
+              <div class="contact-info-item">
+                <h3 class="contact-info-label">Phone</h3>
+                <p class="contact-info-value">
+                  <a href="tel:+2348012345678">+234 801 234 5678</a><br>
+                  <a href="tel:+2349087654321">+234 908 765 4321</a>
+                </p>
+              </div>
+
+              <div class="contact-info-item">
+                <h3 class="contact-info-label">Email</h3>
+                <p class="contact-info-value">
+                  <a href="mailto:info@lagoselectronics.ng">info@lagoselectronics.ng</a><br>
+                  <a href="mailto:support@lagoselectronics.ng">support@lagoselectronics.ng</a>
+                </p>
+              </div>
+
+              <div class="contact-info-item">
+                <h3 class="contact-info-label">Business Hours</h3>
+                <p class="contact-info-value">
+                  Monday - Friday: 8:00 AM - 6:00 PM WAT<br>
+                  Saturday: 9:00 AM - 2:00 PM WAT<br>
+                  Sunday: Closed
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-map" data-reveal="fade-up">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7305729397935!2d3.4207315147764!3d6.428054295357887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sAdeola%20Odeku%20St%2C%20Victoria%20Island%2C%20Lagos!5e0!3m2!1sen!2sng!4v1234567890123"
+                width="800"
+                height="600"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lagos Electronics Coupling Solutions office location on Google Maps"
+                aria-label="Map showing our office location at Plot 47, Adeola Odeku Street, Victoria Island, Lagos, Nigeria"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="contact-form-wrapper" data-reveal="fade-up">
+            <form class="contact-form" id="contact-form" method="POST" novalidate>
+              <div class="form-group">
+                <label for="contact-name" class="form-label">
+                  Full Name <span class="required" aria-label="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="form-input"
+                  placeholder="John Adebayo"
+                  required
+                  autocomplete="name"
+                  aria-required="true"
+                  aria-invalid="false"
+                  aria-describedby="contact-name-error"
+                >
+                <span id="contact-name-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">
+                  Email Address <span class="required" aria-label="required">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="form-input"
+                  placeholder="john.adebayo@example.com"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  aria-required="true"
+                  aria-invalid="false"
+                  aria-describedby="contact-email-error"
+                >
+                <span id="contact-email-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-phone" class="form-label">
+                  Phone Number <span class="required" aria-label="required">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="contact-phone"
+                  name="phone"
+                  class="form-input"
+                  placeholder="+234 801 234 5678"
+                  required
+                  autocomplete="tel"
+                  inputmode="tel"
+                  aria-required="true"
+                  aria-invalid="false"
+                  aria-describedby="contact-phone-error contact-phone-hint"
+                >
+                <span id="contact-phone-hint" class="form-hint">Nigerian format: +234 XXX XXX XXXX or 0XXX XXX XXXX</span>
+                <span id="contact-phone-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">
+                  Message <span class="required" aria-label="required">*</span>
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  class="form-textarea"
+                  placeholder="Tell us about your electronics coupling needs..."
+                  required
+                  rows="6"
+                  minlength="10"
+                  maxlength="1000"
+                  aria-required="true"
+                  aria-invalid="false"
+                  aria-describedby="contact-message-error contact-message-hint"
+                ></textarea>
+                <span id="contact-message-hint" class="form-hint">Minimum 10 characters, maximum 1000 characters</span>
+                <span id="contact-message-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-feedback" id="form-feedback" aria-live="polite"></div>
+
+              <button type="submit" class="form-submit" aria-label="Submit contact form">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -209,5 +366,6 @@
 
   <script type="module" src="scripts/animations.js"></script>
   <script type="module" src="scripts/interactions.js"></script>
+  <script type="module" src="scripts/form-validation.js"></script>
 </body>
 </html>
